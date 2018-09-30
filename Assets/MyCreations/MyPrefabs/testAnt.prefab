@@ -144,7 +144,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  movementSpeed: 1
+  movementSpeed: 2.18
   distanceToTarget: 0
   targetReached: 0
   objectiveReached: 0

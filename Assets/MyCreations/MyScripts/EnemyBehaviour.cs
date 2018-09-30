@@ -24,17 +24,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "TurnPoint")
-        {
-            targetReached = true;
-        }
-        if (other.gameObject.tag == "Objective")
-        {
-            objectiveReached = true;
-        }
-    }
+   
 
 
 
