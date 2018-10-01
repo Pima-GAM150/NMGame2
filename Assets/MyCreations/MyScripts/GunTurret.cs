@@ -18,8 +18,7 @@ public class GunTurret : TurretBehaviour {
         AimAtEnemytoShoot();
 
         if (isEnemyInSights == true)
-        {          
-           
+        {                     
             ShootAtEnemyWithBullets();
         }
 
@@ -27,15 +26,21 @@ public class GunTurret : TurretBehaviour {
 
     void ShootAtEnemyWithBullets()
     {
-        firingRate =- Time.deltaTime;
-        if (firingRate <= 0f)
+        timeBetweenProjectiles =- Time.deltaTime;
+
+        if (timeBetweenProjectiles <= 0f)
         {
             Rigidbody projectileClone;
             projectileClone = Instantiate(projectile.GetComponent<Rigidbody>(), turretProjectiveExitSpot.position, turretProjectiveExitSpot.rotation) as Rigidbody;
-            projectileClone.velocity = transform.TransformDirection(Vector3.forward * rateofFire);
-           firingRate = rateofFire;
+            projectileClone.velocity = transform.TransformDirection(Vector3.forward * speedofProjectile);
+           TimeReset();
         }
 
+    }
+
+    void TimeReset()
+    {
+        timeBetweenProjectiles = rateofFire;
     }
 
    

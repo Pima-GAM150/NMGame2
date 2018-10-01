@@ -9,7 +9,7 @@ public abstract class TurretBehaviour : MonoBehaviour {
 
     public float speedofProjectile;
     public float rateofFire;
-    public float firingRate;
+    public float timeBetweenProjectiles;
     public bool isEnemyInSights = false;
 
     public virtual void AimAtEnemytoShoot()
@@ -26,12 +26,16 @@ public abstract class TurretBehaviour : MonoBehaviour {
         {
             targetEnemy = inTargetRange.gameObject;
             isEnemyInSights = true;
-        }
-        else
+        }        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Ant")
         {
+
             isEnemyInSights = false;
         }
     }
-
 
 }

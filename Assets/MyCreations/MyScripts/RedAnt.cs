@@ -20,17 +20,6 @@ public class RedAnt : EnemyBehaviour {
             
 	}
 
-    void LocateFirstTarget()
-    {
-
-        firstPointsOfInterest[0] = GameObject.Find("PointA");
-        firstPointsOfInterest[1] = GameObject.Find("PointB");
-        firstPointsOfInterest[2] = GameObject.Find("PointC");
-        firstPointsOfInterest[3] = GameObject.Find("PointD");
-        firstPointsOfInterest[4] = GameObject.Find("PointE");
-
-        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
-    }
 
     void MoveTowardTarget()
     {
@@ -56,8 +45,7 @@ public class RedAnt : EnemyBehaviour {
 
         if (targetReached == true)
         {
-            targetObject = GameObject.FindWithTag("Objective");
-            
+            targetObject = GameObject.FindWithTag("Objective");           
                     
         }      
         
