@@ -8,6 +8,9 @@ TagManager:
   - TurnPoint
   - SpawnPoint
   - Ant
+  - EnemyAnt
+  - Enemy
+  - Friendly
   layers:
   - Default
   - TransparentFX

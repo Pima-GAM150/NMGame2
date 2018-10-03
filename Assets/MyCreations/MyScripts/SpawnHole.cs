@@ -11,6 +11,9 @@ public class SpawnHole : MonoBehaviour {
     public float currentSpawnTime;
     public float round1SpawnTime;
 
+    public int targetNumberForEnemyToWin;
+    public int currentNumOfPointsCollected;
+
 
 	// the the game the starts the spawn will begin to count down
 	void Start () {
@@ -42,5 +45,14 @@ public class SpawnHole : MonoBehaviour {
     {
         Instantiate(enemyToSpawn, transform.position, transform.rotation);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.GetComponent<EnemyBehaviour>().objectiveReached == true)
+        {
+            currentNumOfPointsCollected += 1;
+        }
+    }
+
 
 }

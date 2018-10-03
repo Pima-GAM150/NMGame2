@@ -4,16 +4,17 @@ using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    public GameObject targetObject;
-
-    public GameObject[] firstPointsOfInterest = new GameObject[5];
-
+   
+    
+    public int antHealth;
     public float movementSpeed;
     public float distanceToTarget;
+    public float attackBumpEffect;
 
     public bool targetReached = false;
     public bool objectiveReached = false;
-
+    public GameObject targetObject;
+    public GameObject[] firstPointsOfInterest = new GameObject[5];
 
     public virtual void LocateFirstTarget()
     {
@@ -27,7 +28,13 @@ public abstract class EnemyBehaviour : MonoBehaviour
         targetObject = firstPointsOfInterest[Random.Range(0, 5)];
     }
 
-
+    public virtual void HealthCheck()
+    {
+        if (antHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 

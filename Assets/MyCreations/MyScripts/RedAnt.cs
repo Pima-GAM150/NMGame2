@@ -17,7 +17,7 @@ public class RedAnt : EnemyBehaviour {
 	void Update () {
         MoveTowardTarget();
         LocatethePrimaryObjective();
-            
+        HealthCheck();
 	}
 
 
@@ -49,6 +49,7 @@ public class RedAnt : EnemyBehaviour {
                     
         }      
         
+        // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
         if (objectiveReached == true)
         {
             targetObject = GameObject.FindWithTag("SpawnPoint");
@@ -72,10 +73,16 @@ public class RedAnt : EnemyBehaviour {
             objectiveReached = false;
             LocateFirstTarget();
         }
+        if (other.gameObject.tag == "Friendly")
+        {
+            antHealth -= 1;
+            //other.GetComponent<Rigidbody>().AddForce(other.transform.position, );
+        }
+               
 
     }
-
-
-
-
+    
 }
+
+
+
