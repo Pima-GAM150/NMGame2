@@ -47,8 +47,7 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
 
 
         transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
-        //anim.SetBool("isRunning", true);
-        //anim.SetBool("isIdle", false);
+        
     }
 
 

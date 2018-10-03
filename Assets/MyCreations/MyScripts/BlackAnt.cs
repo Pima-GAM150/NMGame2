@@ -20,4 +20,14 @@ public class BlackAnt : FriendlyBehaviour {
         HealthCheck();
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            antHealth -= 1;
+        }
+    }
+
+
 }
