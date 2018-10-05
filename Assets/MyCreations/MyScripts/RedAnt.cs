@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedAnt : EnemyBehaviour {
+public class RedAnt : EnemyBehaviour, ITakeDamage {
 
     static Animator anim;
 
@@ -81,7 +82,15 @@ public class RedAnt : EnemyBehaviour {
                
 
     }
-    
+
+    public void TakeDamage(int damage)
+    {
+        antHealth -= damage;
+        if (antHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 
 

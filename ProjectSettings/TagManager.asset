@@ -11,6 +11,7 @@ TagManager:
   - EnemyAnt
   - Enemy
   - Friendly
+  - Tower
   layers:
   - Default
   - TransparentFX

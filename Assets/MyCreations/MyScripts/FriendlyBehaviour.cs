@@ -11,19 +11,23 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
     public bool targetReached = false;
     public bool objectiveReached = false;
     public GameObject targetObject;
-    public GameObject[] firstPointsOfInterest = new GameObject[5];
+    public GameObject[] firstPointsOfInterest = new GameObject[2];
 
     public virtual void LocateTarget()
     {
 
         firstPointsOfInterest[0] = GameObject.FindWithTag("Enemy");
-        firstPointsOfInterest[1] = GameObject.FindWithTag("Enemy");
-        firstPointsOfInterest[2] = GameObject.FindWithTag("Enemy");
-        firstPointsOfInterest[3] = GameObject.FindWithTag("Enemy");
-        firstPointsOfInterest[4] = GameObject.FindWithTag("Enemy");
+        firstPointsOfInterest[1] = GameObject.FindWithTag("Tower");
 
-
-        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
+        if (firstPointsOfInterest[1].GetComponent<> != null)
+        {
+           
+        }
+        else
+        {
+            targetObject = firstPointsOfInterest[0];
+        }
+        
     }
 
     public virtual void HealthCheck()

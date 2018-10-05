@@ -9,39 +9,60 @@ public class GunTurret : TurretBehaviour {
 
 
 	void Start () {
+        turretCurrentHP = turrentMaxHP;
+        IdleTurretMotion();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        AimAtEnemytoShoot();
+        if (targetEnemy != null)
+        {
+            AimAtEnemytoShoot();
+            if (isEnemyInSights == true)
+            {
 
-        if (isEnemyInSights == true)
-        {                     
-            ShootAtEnemyWithBullets();
+                ShootAtEnemyWithBullets();
+            }
+        }
+        else
+        {
+            IdleTurretMotion();
         }
 
     }
 
     void ShootAtEnemyWithBullets()
     {
-        timeBetweenProjectiles =- Time.deltaTime;
+        StartCoroutine(ShootAfterSeconds((int)rateofFire));          
+        
+    }
 
-        if (timeBetweenProjectiles <= 0f)
+    IEnumerator ShootAfterSeconds(int rateofFire)
+    {
+        while (true)
         {
+          
+            yield return new WaitForSeconds(rateofFire);
+
             Rigidbody projectileClone;
             projectileClone = Instantiate(projectile.GetComponent<Rigidbody>(), turretProjectiveExitSpot.position, turretProjectiveExitSpot.rotation) as Rigidbody;
             projectileClone.velocity = transform.TransformDirection(Vector3.forward * speedofProjectile);
-           TimeReset();
+
+
         }
 
     }
 
-    void TimeReset()
-    {
-        timeBetweenProjectiles = rateofFire;
-    }
+
+
+
+
+
+
+    
+    
 
    
 }
