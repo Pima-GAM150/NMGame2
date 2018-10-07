@@ -12,6 +12,11 @@ TagManager:
   - Enemy
   - Friendly
   - Tower
+  - EnemyObjective
+  - PlayerObjective
+  - Resource
+  - FriendlyWorker
+  - EnemyWorker
   layers:
   - Default
   - TransparentFX

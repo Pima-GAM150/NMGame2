@@ -7,10 +7,12 @@ public class SpawnHole : MonoBehaviour {
     //enemies will spawn and will move towards a certain point on the map. once they reach that point they will change target to the objective.
     // once enemies reach objective they will pick up one of 10 objectives and they till target the spawn point with the item and run in a straight line
 
-    public GameObject enemyToSpawn;
+    public GameObject redAntPrefab;
+    public GameObject redSoldierAnt;
     public float currentSpawnTime;
     public float round1SpawnTime;
 
+    public int numberofEnemiesSpawned;
     public int targetNumberForEnemyToWin;
     public int currentNumOfPointsCollected;
 
@@ -42,8 +44,18 @@ public class SpawnHole : MonoBehaviour {
     }
 
     void SpawnEnemyPrefab()
-    {
-        Instantiate(enemyToSpawn, transform.position, transform.rotation);
+    {        
+
+        if (numberofEnemiesSpawned == 5)
+        {
+            Instantiate(redSoldierAnt, transform.position, transform.rotation);
+            numberofEnemiesSpawned = 0;
+        }
+        else
+        {
+            Instantiate(redAntPrefab, transform.position, transform.rotation);
+            numberofEnemiesSpawned += 1;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

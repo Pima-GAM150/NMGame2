@@ -28,6 +28,34 @@ public abstract class EnemyBehaviour : MonoBehaviour
         targetObject = firstPointsOfInterest[Random.Range(0, 5)];
     }
 
+    public virtual void LocateAFriendlyToAttack()
+    {
+        firstPointsOfInterest[0] = GameObject.FindWithTag("Friendly");
+        firstPointsOfInterest[1] = GameObject.FindWithTag("Friendly");
+        firstPointsOfInterest[2] = GameObject.FindWithTag("Friendly");
+        firstPointsOfInterest[3] = GameObject.FindWithTag("Friendly");
+        firstPointsOfInterest[4] = GameObject.FindWithTag("Friendly");
+
+        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
+
+    }
+
+    public virtual void MoveTowardTarget()
+    {
+        float step = movementSpeed * Time.deltaTime;
+
+        //this code makes the asset look at the target witht eh axis in the 2nd line
+        Vector3 dirctToTarget = targetObject.transform.position - transform.position;
+        
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirctToTarget), 0.1f);
+        //end
+
+
+        //move toward the target object at the rate of the "step"
+        transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
+       
+    }
+
     public virtual void HealthCheck()
     {
         if (antHealth <= 0)
@@ -36,7 +64,22 @@ public abstract class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    public virtual void TakeDamage(int damage)
+    {
+        antHealth -= damage;
+        if (antHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Friendly")
+        {
+            TakeDamage(1);
+        }
+    }
 
 }
 

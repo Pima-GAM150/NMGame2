@@ -11,24 +11,19 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
     public bool targetReached = false;
     public bool objectiveReached = false;
     public GameObject targetObject;
-    public GameObject[] firstPointsOfInterest = new GameObject[2];
+    public GameObject[] firstPointsOfInterest;
 
     public virtual void LocateTarget()
     {
+        firstPointsOfInterest[0] = GameObject.Find("PointA");
+        firstPointsOfInterest[1] = GameObject.Find("PointB");
+        firstPointsOfInterest[2] = GameObject.Find("PointC");
+        firstPointsOfInterest[3] = GameObject.Find("PointD");
+        firstPointsOfInterest[4] = GameObject.Find("PointE");
 
-        firstPointsOfInterest[0] = GameObject.FindWithTag("Enemy");
-        firstPointsOfInterest[1] = GameObject.FindWithTag("Tower");
+        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
 
-        if (firstPointsOfInterest[1].GetComponent<> != null)
-        {
-           
-        }
-        else
-        {
-            targetObject = firstPointsOfInterest[0];
-        }
-        
-    }
+    }     
 
     public virtual void HealthCheck()
     {
@@ -44,17 +39,17 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
 
         //this code makes the asset look at the target witht eh axis in the 2nd line
         Vector3 dirctToTarget = targetObject.transform.position - transform.position;
-        dirctToTarget.y = 0;
+        
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirctToTarget), 0.1f);
         //end
-
-
-
         transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
         
     }
 
-
+    public virtual void IdleMotion()
+    {
+        transform.Rotate(0, 0.3f, 0);
+    }
 
 
 }

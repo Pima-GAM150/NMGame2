@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 54869592918347198}
   m_Layer: 0
   m_Name: RedAnt
-  m_TagString: Enemy
+  m_TagString: EnemyWorker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antHealth: 5
-  movementSpeed: 2.18
+  movementSpeed: 2
   distanceToTarget: 0
   attackBumpEffect: 0
   targetReached: 0

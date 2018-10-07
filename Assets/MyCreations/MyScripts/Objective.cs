@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour {
 
-
+    public GameManager player;
     public int numberOfPointsToTake;
 
     public GameObject[] visualPrefabforEnemyToTake;
@@ -24,7 +24,7 @@ public class Objective : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            numberOfPointsToTake -= 1;
+            
         }
     }
 

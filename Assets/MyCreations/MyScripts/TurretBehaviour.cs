@@ -9,6 +9,7 @@ public abstract class TurretBehaviour : MonoBehaviour {
 
     public int turretCurrentHP;
     public int turrentMaxHP;
+    public int secondsBetweenDamageIntake;
 
     //public enum State { Damaged, MaxStrength };
     //public State turrentsHPstate;
@@ -52,4 +53,18 @@ public abstract class TurretBehaviour : MonoBehaviour {
         }
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            turretCurrentHP--;
+        }
+
+        if (collision.gameObject.tag == "Friendly")
+        {
+            turretCurrentHP++;
+        }
+    }
 }
+
+

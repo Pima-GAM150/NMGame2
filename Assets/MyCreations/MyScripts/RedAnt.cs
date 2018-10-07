@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class RedAnt : EnemyBehaviour, ITakeDamage {
 
-    static Animator anim;
+    GameObject playerRP;
+    GameObject neutralRP;
 
     // Use this for initialization
     void Start () {
+
+        playerRP = GameObject.Find("PlayerResourcePile");
+        neutralRP = GameObject.Find("NeutralResourcePile");
+
         LocateFirstTarget();
 
 
@@ -19,41 +24,29 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
         MoveTowardTarget();
         LocatethePrimaryObjective();
         HealthCheck();
-	}
-
-
-    void MoveTowardTarget()
-    {
-        float step = movementSpeed * Time.deltaTime;
-
-        //this code makes the asset look at the target witht eh axis in the 2nd line
-        Vector3 dirctToTarget = targetObject.transform.position - transform.position;
-        dirctToTarget.y = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirctToTarget), 0.1f);
-        //end
-
-        
-
-        transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, step);
-        //anim.SetBool("isRunning", true);
-        //anim.SetBool("isIdle", false);
-    }
+	}  
 
    
 
     void LocatethePrimaryObjective()
-    {       
+    {
 
         if (targetReached == true)
         {
-            targetObject = GameObject.FindWithTag("Objective");           
-                    
-        }      
+            if (neutralRP == null)
+            {
+                targetObject = playerRP;
+            }
+            else
+            {
+                targetObject = neutralRP;
+            }
+        }
         
         // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
         if (objectiveReached == true)
         {
-            targetObject = GameObject.FindWithTag("SpawnPoint");
+            targetObject = GameObject.FindWithTag("EnemyObjective");
         }
         
     }
@@ -68,29 +61,20 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
         {
             objectiveReached = true;
         }
-        if (other.gameObject.tag == "SpawnPoint")
+        if (other.gameObject.tag == "EnemyObjective")
         {
             targetReached = false;
             objectiveReached = false;
             LocateFirstTarget();
-        }
-        if (other.gameObject.tag == "Friendly")
-        {
-            antHealth -= 1;
-            //other.GetComponent<Rigidbody>().AddForce(other.transform.position, );
-        }
-               
+        }                    
 
     }
 
-    public void TakeDamage(int damage)
-    {
-        antHealth -= damage;
-        if (antHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
+   
+
+
+
+    
 }
 
 

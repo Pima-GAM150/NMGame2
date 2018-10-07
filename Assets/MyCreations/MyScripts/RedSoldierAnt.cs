@@ -12,13 +12,11 @@ public class RedSoldierAnt : EnemyBehaviour, ITakeDamage {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        LocateAFriendlyToAttack();
+        MoveTowardTarget();
+        HealthCheck();
 	}
-
-    public void TakeDamage(int damage)
-    {
-       
-    }
+    
 
    
 }
