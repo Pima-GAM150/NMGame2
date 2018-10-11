@@ -50,7 +50,7 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
         {
             targetObject = GameObject.FindWithTag("EnemyObjective");
             
-            leafPrefabForAntToCarry.transform.parent = gameObject.transform;
+            //leafPrefabForAntToCarry.transform.parent = gameObject.transform;
         }
         
     }
@@ -70,6 +70,7 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
            
             targetReached = false;
             objectiveReached = false;
+            leafPrefabForAntToCarry.transform.parent = null;
             LocateFirstTarget();
         }
         if (other.gameObject.tag == "Resource")
@@ -77,7 +78,7 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<FriendlyBehaviour>())
         {

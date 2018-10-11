@@ -1182,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 546902818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -92.27, y: 0.59, z: -1.55}
-  m_LocalScale: {x: 7.412986, y: 0.1156111, z: 6.486777}
+  m_LocalScale: {x: 4.881042, y: 0.1156111, z: 3.899965}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -1388,7 +1388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 40270632}
-  resourcePreFab: {fileID: 0}
+  resourcePreFab: {fileID: 1728316661006820, guid: 8b399f4062c2f89409b9740e5f5e052c,
+    type: 2}
   resourcesGathered: 0
   resourcePool: []
 --- !u!4 &682278896 stripped

@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackAnt : FriendlyBehaviour {
+public class BlackAnt : FriendlyBehaviour, ITakeDamage
+{
 
     GameObject neutralRP;
     GameObject enemyRP;
@@ -81,13 +83,12 @@ public class BlackAnt : FriendlyBehaviour {
 
     }
 
-    private void OnColliderEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (collision.gameObject.GetComponent<EnemyBehaviour>())
         {
-            antHealth -= 1;
+            TakeDamage(1);
         }
     }
-
-
 }
+
