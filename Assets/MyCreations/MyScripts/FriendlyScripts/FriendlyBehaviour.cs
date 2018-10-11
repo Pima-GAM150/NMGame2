@@ -51,5 +51,13 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
         transform.Rotate(0, 0.3f, 0);
     }
 
+    public virtual void TakeDamage(int damage)
+    {
+        antHealth -= damage;
+        if (antHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }
