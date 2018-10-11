@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class NeutralRP : MonoBehaviour {
 
@@ -9,7 +10,8 @@ public class NeutralRP : MonoBehaviour {
     public int numberOfResoursePoints;
 
     public GameObject resourcePreFab;
-    public GameObject[] resourseObjects;
+    public GameObject[] resourceObjects;
+    public Transform rp;
 
 
 	void Start () {
@@ -20,21 +22,27 @@ public class NeutralRP : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         ResourseCheck();
 		
 	}
-
-    void CreateResourses()
-    {
-        Instantiate(resourcePreFab, gameObject.transform.position, gameObject.transform.rotation);
-    }
 
 
 
     void ResourseCheck()
     {
-        resourseObjects = new GameObject[numberOfResoursePoints];
-        //resourseObjects[] = CreateResourses);
+        resourceObjects = new GameObject[numberOfResoursePoints];
+        int index = 0;
+        for (index = 0; index < numberOfResoursePoints; index++)
+        {
+            //Instantiate(resourcePreFab, new Vector3(index * 2.0f,0,0), Quaternion.identity);
+            resourceObjects[index] = resourcePreFab;            
+        }
+
+
+        
+
+        //ArrayUtility.Add(ref resourceObjects, resourcePreFab);
 
         if (numberOfResoursePoints <= 0)
         {

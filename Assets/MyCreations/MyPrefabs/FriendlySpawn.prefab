@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4647997904914842}
   - component: {fileID: 212842222489744340}
+  - component: {fileID: 114274319405887760}
   m_Layer: 0
   m_Name: FriendlySpawn
   m_TagString: Untagged
@@ -34,12 +35,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1083023414617550}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 19.75, y: 0.59, z: -19.99}
+  m_LocalPosition: {x: -61.32, y: 0.59, z: -18.59}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114274319405887760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083023414617550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f248172d8e362594dbec1045e980f934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlyUnit: {fileID: 1239323356614550, guid: d40b35f45a91d6946814555aa08fd7fc,
+    type: 2}
+  spawnButton: {fileID: 0}
+  SpawnsButtonState: 0
 --- !u!212 &212842222489744340
 SpriteRenderer:
   m_ObjectHideFlags: 1

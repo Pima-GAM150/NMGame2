@@ -10,7 +10,7 @@ public class BlackAnt : FriendlyBehaviour {
 
 	void Start () {
 
-        neutralRP = GameObject.Find("NeuralResourcePile");
+        neutralRP = GameObject.Find("NeutralResourcePile");
         enemyRP = GameObject.Find("EnemyResourcePile");
         
 	}
@@ -36,7 +36,7 @@ public class BlackAnt : FriendlyBehaviour {
         //if there is no neutral resource pile then this unit will go after the enemy pile.
         if (targetReached == true)
         {
-            if(neutralRP == null)
+            if (neutralRP == null)
             {
                 targetObject = enemyRP;
             }
@@ -47,10 +47,16 @@ public class BlackAnt : FriendlyBehaviour {
         }
 
         // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
-        if (objectiveReached == true && targetReached == true)
+        if (objectiveReached == true)
         {
             targetObject = GameObject.FindWithTag("PlayerObjective");
         }
+
+        // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
+        //if (objectiveReached == true && targetReached == true)
+        //{
+        //    targetObject = 
+        //}
 
     }
 
@@ -62,7 +68,7 @@ public class BlackAnt : FriendlyBehaviour {
         {
             targetReached = true;
         }
-        if (other.gameObject.tag == "Objective")
+        if (other.gameObject.tag == "Objective" || other.gameObject.tag == "EnemyObjective")
         {
             objectiveReached = true;
         }

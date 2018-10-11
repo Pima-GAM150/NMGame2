@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class EnemyRP : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemyRP : MonoBehaviour
 
     public int resourcesGathered;
     public GameObject[] resources;
+    public GameObject resourcePreFab;
 
     void Start()
     {
@@ -19,21 +21,28 @@ public class EnemyRP : MonoBehaviour
     void Update()
     {
         resources = new GameObject[resourcesGathered];
+        int index = 0;
+        for (index = 0; index < resourcesGathered; index++)
+        {
+            resources[index] = resourcePreFab;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<EnemyBehaviour>().objectiveReached == true )
+        if (other.GetComponent<EnemyBehaviour>().objectiveReached == true)
         {
             resourcesGathered += 1;
 
-        }
-        if (other.GetComponent<FriendlyBehaviour>().objectiveReached == false)
+
+        }       
+        if (other.gameObject.tag == "FriendlyWorker" )
         {
             resourcesGathered -= 1;
-            other.GetComponent<FriendlyBehaviour>().objectiveReached = true;
+            //other.GetComponent<FriendlyBehaviour>().objectiveReached = true;
         }
-
+        
     }
+    
 }
 

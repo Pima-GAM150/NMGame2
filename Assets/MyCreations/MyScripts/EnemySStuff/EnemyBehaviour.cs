@@ -8,16 +8,17 @@ public abstract class EnemyBehaviour : MonoBehaviour
     
     public int antHealth;
     public float movementSpeed;
-    public float distanceToTarget;
-    public float attackBumpEffect;
+    float distanceToTarget;
+   
 
     public bool targetReached = false;
-    public bool objectiveReached = false;
+    public bool objectiveReached = false;    
     public GameObject targetObject;
     public GameObject[] firstPointsOfInterest = new GameObject[5];
+    public GameObject[] resourcesToCollect;
 
     public virtual void LocateFirstTarget()
-    {
+    {        
 
         firstPointsOfInterest[0] = GameObject.Find("PointA");
         firstPointsOfInterest[1] = GameObject.Find("PointB");

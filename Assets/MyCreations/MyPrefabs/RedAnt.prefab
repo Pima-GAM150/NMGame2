@@ -137,10 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8efd271e109734ba00d3565d90e7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antHealth: 5
-  movementSpeed: 2
-  distanceToTarget: 0
-  attackBumpEffect: 0
+  antHealth: 2
+  movementSpeed: 3
   targetReached: 0
   objectiveReached: 0
   targetObject: {fileID: 0}
@@ -150,3 +148,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  resourcesToCollect: []
+  leafPrefabForAntToCarry: {fileID: 0}

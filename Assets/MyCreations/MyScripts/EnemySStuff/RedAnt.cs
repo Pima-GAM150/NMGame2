@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RedAnt : EnemyBehaviour, ITakeDamage {
 
+    public GameObject leafPrefabForAntToCarry;
     GameObject playerRP;
     GameObject neutralRP;
 
@@ -30,7 +31,6 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
 
     void LocatethePrimaryObjective()
     {
-
         if (targetReached == true)
         {
             if (neutralRP == null)
@@ -42,11 +42,15 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
                 targetObject = neutralRP;
             }
         }
+       
+        
         
         // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
         if (objectiveReached == true)
         {
             targetObject = GameObject.FindWithTag("EnemyObjective");
+            
+            leafPrefabForAntToCarry.transform.parent = gameObject.transform;
         }
         
     }
@@ -57,24 +61,34 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
         {
             targetReached = true;
         }
-        if (other.gameObject.tag == "Objective")
+        if (other.gameObject.tag == "Objective" || other.gameObject.tag == "PlayerObjective")
         {
             objectiveReached = true;
         }
         if (other.gameObject.tag == "EnemyObjective")
         {
+           
             targetReached = false;
             objectiveReached = false;
             LocateFirstTarget();
-        }                    
+        }
+        if (other.gameObject.tag == "Resource")
+            leafPrefabForAntToCarry = other.gameObject;
 
     }
 
-   
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<FriendlyBehaviour>())
+        {
+            TakeDamage(1);
+        }
+    }
 
 
 
-    
+
+
 }
 
 

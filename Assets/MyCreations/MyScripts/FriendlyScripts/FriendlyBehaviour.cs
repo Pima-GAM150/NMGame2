@@ -6,7 +6,7 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
 
     public int antHealth;
     public float movementSpeed;
-    public float distanceToTarget;
+    float distanceToTarget;
 
     public bool targetReached = false;
     public bool objectiveReached = false;
