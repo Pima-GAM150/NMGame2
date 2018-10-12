@@ -30,15 +30,17 @@ public class PlayerRP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<FriendlyBehaviour>().objectiveReached == true)
+        FriendlyBehaviour friend = other.GetComponent<FriendlyBehaviour>();
+        if (friend != null && friend.objectiveReached == true)
         {
-            resourcesGathered += 1;
+            GameManager.singleton.AddPlayerPoints(1);
 
         }
-        if (other.GetComponent<EnemyBehaviour>().targetReached == true)
+
+        EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+        if (enemy != null && enemy.targetReached == true)
         {
-            resourcesGathered -= 1;
-            other.GetComponent<FriendlyBehaviour>().objectiveReached = true;
+            GameManager.singleton.SubPlayerPoints(1);
         }
     }
 }

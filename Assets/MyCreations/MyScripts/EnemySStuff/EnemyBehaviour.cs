@@ -46,6 +46,11 @@ public abstract class EnemyBehaviour : MonoBehaviour
         float step = movementSpeed * Time.deltaTime;
 
         //this code makes the asset look at the target witht eh axis in the 2nd line
+        if (targetObject == null)
+        {
+            LocateFirstTarget();
+
+        }
         Vector3 dirctToTarget = targetObject.transform.position - transform.position;
         
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirctToTarget), 0.1f);

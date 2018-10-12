@@ -76,6 +76,7 @@ public class BlackAnt : FriendlyBehaviour, ITakeDamage
         }
         if (other.gameObject.tag == "PlayerObjective")
         {
+            GameManager.singleton.AddPlayerPoints(1);
             targetReached = false;
             objectiveReached = false;
             LocateTarget();

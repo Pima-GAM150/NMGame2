@@ -6,15 +6,13 @@ using UnityEditor;
 public class EnemyRP : MonoBehaviour
 {
 
-    public GameManager manager;
-
+    
     public int resourcesGathered;
     public GameObject[] resources;
     public GameObject resourcePreFab;
 
     void Start()
     {
-        resourcesGathered = manager.enemyCurrentPoints;
     }
 
     // Update is called once per frame
@@ -30,16 +28,17 @@ public class EnemyRP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
         if (other.GetComponent<EnemyBehaviour>().objectiveReached == true)
         {
-            resourcesGathered += 1;
+            GameManager.singleton.AddEnemyPoints(1);
 
 
-        }       
+        }
+        FriendlyBehaviour friend = other.GetComponent<FriendlyBehaviour>();
         if (other.gameObject.tag == "FriendlyWorker" )
         {
-            resourcesGathered -= 1;
-            //other.GetComponent<FriendlyBehaviour>().objectiveReached = true;
+            GameManager.singleton.SubEnemyPoints(1);
         }
         
     }

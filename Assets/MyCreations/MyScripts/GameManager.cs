@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager singleton;
+
     public int playerCurrentPoints;
     public int enemyCurrentPoints;
     public int numOfPointsForVictory = 20;
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
 	
 	void Start () {
-		
+        singleton = this;
 	}
 	
 	void Update () {
@@ -32,6 +34,23 @@ public class GameManager : MonoBehaviour {
         {
             //player wins
         }
+    }
+
+    public void AddPlayerPoints(int pointAdded)
+    {
+        playerCurrentPoints += pointAdded;
+    }
+    public void AddEnemyPoints(int pointAdded)
+    {
+        enemyCurrentPoints += pointAdded;
+    }
+    public void SubPlayerPoints(int pointsTaken)
+    {
+        playerCurrentPoints -= pointsTaken;
+    }
+    public void SubEnemyPoints(int pointsTaken)
+    {
+        enemyCurrentPoints -= pointsTaken;
     }
 
 }
