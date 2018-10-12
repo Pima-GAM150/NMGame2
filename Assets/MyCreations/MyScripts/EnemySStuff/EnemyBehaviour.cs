@@ -14,30 +14,30 @@ public abstract class EnemyBehaviour : MonoBehaviour
     public bool targetReached = false;
     public bool objectiveReached = false;    
     public GameObject targetObject;
-    public GameObject[] firstPointsOfInterest = new GameObject[5];
-    public GameObject[] resourcesToCollect;
+    public GameObject[] pointsOfInterest = new GameObject[5];
+    public GameObject[] resourcesToCollect = new GameObject[5];
 
     public virtual void LocateFirstTarget()
     {        
 
-        firstPointsOfInterest[0] = GameObject.Find("PointA");
-        firstPointsOfInterest[1] = GameObject.Find("PointB");
-        firstPointsOfInterest[2] = GameObject.Find("PointC");
-        firstPointsOfInterest[3] = GameObject.Find("PointD");
-        firstPointsOfInterest[4] = GameObject.Find("PointE");
+        pointsOfInterest[0] = GameObject.Find("PointA");
+        pointsOfInterest[1] = GameObject.Find("PointB");
+        pointsOfInterest[2] = GameObject.Find("PointC");
+        pointsOfInterest[3] = GameObject.Find("PointD");
+        pointsOfInterest[4] = GameObject.Find("PointE");
 
-        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
+        targetObject = pointsOfInterest[Random.Range(0, 5)];
     }
 
     public virtual void LocateAFriendlyToAttack()
     {
-        firstPointsOfInterest[0] = GameObject.FindWithTag("Friendly");
-        firstPointsOfInterest[1] = GameObject.FindWithTag("Friendly");
-        firstPointsOfInterest[2] = GameObject.FindWithTag("Friendly");
-        firstPointsOfInterest[3] = GameObject.FindWithTag("Friendly");
-        firstPointsOfInterest[4] = GameObject.FindWithTag("Friendly");
+        int index;
+        for (index = 0; index < 5; index++)
+        {
+            pointsOfInterest[index] = FindObjectOfType<FriendlyBehaviour>().gameObject;
+        }
 
-        targetObject = firstPointsOfInterest[Random.Range(0, 5)];
+        targetObject = pointsOfInterest[Random.Range(0, 5)];
 
     }
 
@@ -76,7 +76,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Friendly")
+        if (collision.gameObject.GetComponent<FriendlyBehaviour>())
         {
             TakeDamage(1);
         }

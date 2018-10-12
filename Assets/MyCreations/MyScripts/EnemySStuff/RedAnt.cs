@@ -9,6 +9,7 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
     GameObject playerRP;
     GameObject neutralRP;
 
+
     // Use this for initialization
     void Start () {
 
@@ -70,12 +71,8 @@ public class RedAnt : EnemyBehaviour, ITakeDamage {
            
             targetReached = false;
             objectiveReached = false;
-            leafPrefabForAntToCarry.transform.parent = null;
             LocateFirstTarget();
         }
-        if (other.gameObject.tag == "Resource")
-            leafPrefabForAntToCarry = other.gameObject;
-
     }
 
     private void OnCollisionEnter(Collision collision)

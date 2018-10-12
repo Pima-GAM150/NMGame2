@@ -9,39 +9,27 @@ public class SpawnHole : MonoBehaviour {
 
     public GameObject redAntPrefab;
     public GameObject redSoldierAnt;
-    public float currentSpawnTime;
-    public float round1SpawnTime;
-
+    
+    public int roundSpawnTime;
     public int numberofEnemiesSpawned;
-    public int targetNumberForEnemyToWin;
-    public int currentNumOfPointsCollected;
+ 
 
 
 	// the the game the starts the spawn will begin to count down
-	void Start () {
-        currentSpawnTime = round1SpawnTime;
-        
-
-
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		SpawnTimer();
+	void Start () {        
+        StartCoroutine(SpawnAfterSeconds(roundSpawnTime));
         
 	}
 
-    void SpawnTimer()
+    IEnumerator SpawnAfterSeconds(int roundSpawnTime)
     {
-        currentSpawnTime = currentSpawnTime - Time.deltaTime;
-
-        if (currentSpawnTime <= 0.0f)
+        while (true)
         {
+            yield return new WaitForSeconds(roundSpawnTime);
             SpawnEnemyPrefab();
-            currentSpawnTime = round1SpawnTime;
+
         }
-    }
+    }    
 
     void SpawnEnemyPrefab()
     {        
@@ -56,15 +44,7 @@ public class SpawnHole : MonoBehaviour {
             Instantiate(redAntPrefab, transform.position, transform.rotation);
             numberofEnemiesSpawned += 1;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-      if (other.GetComponent<EnemyBehaviour>().objectiveReached == true)
-        {
-            currentNumOfPointsCollected += 1;
-        }
-    }
+    }   
 
 
 }

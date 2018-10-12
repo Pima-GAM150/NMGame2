@@ -11,7 +11,7 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
     public bool targetReached = false;
     public bool objectiveReached = false;
     public GameObject targetObject;
-    public GameObject[] firstPointsOfInterest;
+    public GameObject[] firstPointsOfInterest = new GameObject[5];
 
     public virtual void LocateTarget()
     {
@@ -24,6 +24,11 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
         targetObject = firstPointsOfInterest[Random.Range(0, 5)];
 
     }     
+
+    public virtual void FindEnemiesToFight()
+    {
+        targetObject = FindObjectOfType<EnemyBehaviour>().gameObject;
+    }
 
     public virtual void HealthCheck()
     {
@@ -60,4 +65,11 @@ public abstract class FriendlyBehaviour : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<EnemyBehaviour>())
+        {
+            TakeDamage(1);
+        }
+    }
 }

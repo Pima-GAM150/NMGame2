@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FriendlySpawn : MonoBehaviour {
 
     public GameObject friendlyUnit;
+    public GameObject friendlySoldier;
     public Button spawnButton;
 
     public enum State {SpawnActive, SpawnInactive };
@@ -18,8 +19,13 @@ public class FriendlySpawn : MonoBehaviour {
         Instantiate(friendlyUnit, transform.position, transform.rotation);
         StartCoroutine(EnableAfterSeconds(seconds));
         SpawnsButtonState = State.SpawnInactive;
-       
+    }
 
+    public void SpawnSoldiers()
+    {
+        Instantiate(friendlySoldier, transform.position, transform.rotation);
+        StartCoroutine(EnableAfterSeconds(seconds));
+        SpawnsButtonState = State.SpawnInactive;
     }
 
     IEnumerator EnableAfterSeconds(int seconds)
