@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BlackAnt : FriendlyBehaviour, ITakeDamage
 {
-
+    public GameObject resourceToCarry;
     GameObject neutralRP;
     GameObject enemyRP;
 
@@ -51,6 +51,7 @@ public class BlackAnt : FriendlyBehaviour, ITakeDamage
         // this is if the ant has made it to the objective and is heading back to spawn the ant should be carrying an item for visual.
         if (objectiveReached == true)
         {
+            PickUpResource();
             targetObject = GameObject.FindWithTag("PlayerObjective");
         }
 
@@ -62,6 +63,11 @@ public class BlackAnt : FriendlyBehaviour, ITakeDamage
 
     }
 
+    void PickUpResource()
+    {
+        //Instantiate(resourceToCarry, gameObject.transform.position, transform.rotation);
+            
+            }
 
     //the trigger should only test for objectives
     void OnTriggerEnter(Collider other)
@@ -76,10 +82,10 @@ public class BlackAnt : FriendlyBehaviour, ITakeDamage
         }
         if (other.gameObject.tag == "PlayerObjective")
         {
-            GameManager.singleton.AddPlayerPoints(1);
             targetReached = false;
             objectiveReached = false;
             LocateTarget();
+            //GameManager.singleton.AddPlayerPoints(1);
         }
 
     }

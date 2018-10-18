@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class PlayerRP : MonoBehaviour
 {
-
-    public GameManager manager;
-
+    
     public GameObject resourcePreFab;
     public int resourcesGathered;
     public GameObject[] resourcePool;
 
     void Start()
     {
-        //resourcesGathered = manager.enemyCurrentPoints;
+      
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        resourcesGathered = GameManager.singleton.playerCurrentPoints;
         resourcePool = new GameObject[resourcesGathered];
         int index = 0;
         for (index = 0; index < resourcesGathered; index++)
         {
             resourcePool[index] = resourcePreFab;
+
         }
 
     }
+
+    //void makeArrayWithSingletonStats()
+    //{
+    //    
+    //}
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -13,11 +13,13 @@ public class EnemyRP : MonoBehaviour
 
     void Start()
     {
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        resourcesGathered = GameManager.singleton.enemyCurrentPoints;
         resources = new GameObject[resourcesGathered];
         int index = 0;
         for (index = 0; index < resourcesGathered; index++)

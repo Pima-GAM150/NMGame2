@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public int enemyCurrentPoints;
     public int numOfPointsForVictory = 20;
     public Text victoryBanner;
+    public Text PlayerText;
+    public Text EnemyText;
 
 	
 	void Start () {
@@ -20,20 +22,28 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         
         VictoryPointCheck();
+        //PlayerText.text = (string)playerCurrentPoints;
+        //EnemyText. = enemyCurrentPoints;
+
 	}
      
     void VictoryPointCheck()
     {
 
-        if (enemyCurrentPoints == 20)
+        if (enemyCurrentPoints >= 20)
         {
-            //victoryBanner = "You lose";
+            victoryBanner.text = "You lose";
         }
 
-        if (playerCurrentPoints == 20)
+        if (playerCurrentPoints >= 20)
         {
-            //player wins
+            victoryBanner.text = "You win";
         }
+    }
+
+    public void TakeResources(int pointToTake)
+    {
+        numOfPointsForVictory -= pointToTake;
     }
 
     public void AddPlayerPoints(int pointAdded)

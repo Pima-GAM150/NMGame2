@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class NeutralRP : MonoBehaviour {
 
-    public GameManager manager;
+    
     //the number of resoures in this pile at the start of the game will be about 20 for now
     public int numberOfResoursePoints;
 
@@ -15,10 +15,16 @@ public class NeutralRP : MonoBehaviour {
 
 
 	void Start () {
-        //CreateResourses();
-        numberOfResoursePoints = manager.numOfPointsForVictory;
-        
-	}
+
+        rp = this.gameObject.transform;
+        resourceObjects = GameObject.FindGameObjectsWithTag("Resource");
+
+        foreach (GameObject Resource in resourceObjects)
+        {
+            Instantiate(resourcePreFab, rp.transform.position, rp.transform.rotation);
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,13 +37,16 @@ public class NeutralRP : MonoBehaviour {
 
     void ResourseCheck()
     {
+        numberOfResoursePoints = GameManager.singleton.numOfPointsForVictory;
+
         resourceObjects = new GameObject[numberOfResoursePoints];
-        int index = 0;
-        for (index = 0; index < numberOfResoursePoints; index++)
-        {
-            //Instantiate(resourcePreFab, new Vector3(index * 2.0f,0,0), Quaternion.identity);
-            resourceObjects[index] = resourcePreFab;            
-        }
+        //int index = 0;
+        //for (index = 0; index < numberOfResoursePoints; index++)
+        //{
+        //    //Instantiate(resourcePreFab, new Vector3(index * 2.0f,0,0), Quaternion.identity);
+        //    resourceObjects[index] = resourcePreFab;
+           
+        //}
 
 
         
@@ -57,7 +66,7 @@ public class NeutralRP : MonoBehaviour {
     {
         if (other.gameObject.tag == "FriendlyWorker" || other.gameObject.tag == "EnemyWorker")
         {
-            numberOfResoursePoints -= 1;
+            GameManager.singleton.TakeResources(1);
         }
     }
 }

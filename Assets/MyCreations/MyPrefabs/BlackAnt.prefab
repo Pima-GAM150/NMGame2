@@ -139,7 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antHealth: 2
   movementSpeed: 3
-  distanceToTarget: 0
   targetReached: 0
   objectiveReached: 0
   targetObject: {fileID: 0}
@@ -149,3 +148,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  resourceToCarry: {fileID: 1728316661006820, guid: 8b399f4062c2f89409b9740e5f5e052c,
+    type: 2}
